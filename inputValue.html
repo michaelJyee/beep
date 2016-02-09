@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/slider/css/simple-slider.css">
+  </head>
+  <body>
+    <div id="container">
+      <div class="row titleText">
+        <div class="col-md-6 col-md-offset-2">
+          <h1></h1>
+        </div>
+      </div>
+      <div class="row options">
+        <div class="col-md-6 col-md-offset-2 control">
+          <input id="userInput" type="number" value="90" min="0" max="500" onkeyup="keyChange()">
+          <button id="startStop" onclick="toggle(this)" value="OFF">START</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 displayBeeps">
+          <div id="beat" class="q1"></div>
+          <div id="beat" class="q2"></div>
+          <div id="beat" class="q3"></div>
+          <div id="beat" class="q4"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <input id="my-input" type="text" data-slider="true" value="0.8" data-slider-highlight="true" style="display: none;">
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="static/jquery.min.js"></script>
+  <script src="static/howler/howler.min.js"></script>
+  <script src="static/loop.js"></script>
+  <script src="static/slider/js/simple-slider.js"></script>
+</html>

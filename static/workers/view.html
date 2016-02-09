@@ -1,0 +1,22 @@
+<!--main page-->
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>Worker example: One-core computation</title>
+ </head>
+ <body>
+  <h1>Web Workers stuff</h1>
+  <p>Hello</p>
+  <script>
+    var worker = new Worker('Worker.js');
+
+    worker.addEventListener('message', function(e) {
+      if(e.data = true){
+        // console.log("TRUE");
+      }
+    }, false);
+
+    worker.postMessage(200); // Send data to our worker.
+  </script>
+ </body>
+</html>

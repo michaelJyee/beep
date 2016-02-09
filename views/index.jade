@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title!= title
+    link(rel='stylesheet', type='text/css', href='/style.css')
+    link(rel='stylesheet', type='text/css', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='/slider/css/simple-slider.css')
+  body
+    #container
+      .row.titleText
+        .col-md-6.col-md-offset-2
+          h1!= message
+      .row.options
+        .col-md-6.col-md-offset-2.control
+          input(id="userInput", type='number', value='90', min="0", max="500", onkeyup="keyChange()")
+          button(id="startStopButton", onclick='toggle(this)', value='OFF') START
+      .row
+        .col-md-8.col-md-offset-2.displayBeeps
+          #beat.q1
+          #beat.q2
+          #beat.q3
+          #beat.q4
+      .row
+        .col-md-8.col-md-offset-2
+          input(id="my-input",type='text', data-slider='true', value='0.8', data-slider-highlight='true', style='display: none;')
+  script(src="/jquery.min.js")
+  script(src='howler/howler.min.js')
+  script(src="loop.js")
+  script(src='slider/js/simple-slider.js')

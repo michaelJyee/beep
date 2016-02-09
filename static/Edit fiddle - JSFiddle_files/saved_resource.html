@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://fiddle.jshell.net/7f6DX/31/show/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title> - jsFiddle demo</title>
+  
+  
+  <script type="text/javascript" src="jquery-1.6.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="normalize(1).css">
+  
+  
+  <link rel="stylesheet" type="text/css" href="result-light.css">
+  
+  <style type="text/css">
+    div {
+    position: absolute;
+}
+  </style>
+  
+
+
+
+<script type="text/javascript">//<![CDATA[
+$(window).load(function(){
+var div = $('div');
+var a = 0;
+var delay = (1000 / 30);
+var now, before = new Date();
+
+
+setInterval(function() {
+    now = new Date();
+    var elapsedTime = (now.getTime() - before.getTime());
+    if(elapsedTime > delay)
+        //Recover the motion lost while inactive.
+        a += Math.floor(elapsedTime/delay);
+    else
+        a++;
+    div.css("left", a);
+    before = new Date();    
+}, delay);
+});//]]> 
+
+</script>
+
+</head>
+<body>
+  <div style="left: 1735px;">test</div>
+  
+
+
+
+
+</body></html>

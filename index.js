@@ -1,0 +1,22 @@
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+app.set('view engine', 'jade');
+app.use(express.static(__dirname + '/static'));
+app.use(bodyParser.json()); // for parsing application/json
+
+app.get('/', function (req, res) {
+  res.render('index', { title: 'Hey', message: 'BEEP, BEEP... ect'});
+});
+
+app.post('/ah', function(request, response){
+    console.log(request.body.user.name);
+    console.log(request.body.user.email);
+
+});
+var server = app.listen(1234, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
+});
