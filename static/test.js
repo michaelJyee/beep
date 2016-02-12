@@ -3,6 +3,7 @@ var value;
 var beepSound = new Howl({urls: ['/audio/bubble1.mp3']});
 var worker = new Worker('workers/worker.js');
 var post = {
+  beats:4,
   validInput: true,
   action: "start",
   bpm: 0
@@ -11,21 +12,29 @@ var post = {
 function toggle(){
   if($('input').val()){
     if($('#startStopButton').attr('value') === 'OFF' && $('input').val() >= 1){
-      $('#startStopButton').attr('value','ON');
-      $('#startStopButton').html('STOP');
-      $('#startStopButton').css({'color':'#0e83cd', 'background':'#fff'});
         start();
+        off();
   }
     else if($('#startStopButton').attr('value') === 'ON'){
-      $('#startStopButton').attr('value','OFF');
-      $('#startStopButton').html('START');
-      $('#startStopButton').css({'color':'#fff', 'background':'#0e83cd'});
         stopBeep();
+        on();
     }
   }
 }
 
-function keyChange(){
+var off = function(){
+  $('#startStopButton').attr('value','ON');
+  $('#startStopButton').html('STOP');
+  $('#startStopButton').css({'color':'#0e83cd', 'background':'#fff'});
+}
+
+var on = function(){
+  $('#startStopButton').attr('value','OFF');
+  $('#startStopButton').html('START');
+  $('#startStopButton').css({'color':'#fff', 'background':'#0e83cd'});
+}
+
+var keyChange = function(){
 
   var boo = !isNaN($('input').val()) && ($('input').val() >= 1);
 
@@ -35,6 +44,7 @@ function keyChange(){
     if(boo){
       post.action = "update";
     }else if(!boo){
+      on();
       post.action = "stop";
     }
   }
@@ -70,16 +80,17 @@ var validInput = function(){
 
 var errAnimate = function(){
   $('#startStopButton').jrumble({
-    x: 18,
+    x: 20,
     y: 0,
-    speed: 35
+    speed: 50
   });
-  
+
   $('#startStopButton').trigger('startRumble');
-  wait = setInterval(function(){
+  
+  var wait = setInterval(function(){
     $('#startStopButton').trigger('stopRumble');
     clearInterval(wait);
-  }, 700);
+  }, 1000);
 }
 
 $("#my-input").bind("slider:changed", function (event, data) {
@@ -89,5 +100,8 @@ $("#my-input").bind("slider:changed", function (event, data) {
 
 
 worker.addEventListener('message', function(obj) {
+    if(obj.data){
+      beepSound.play();
+    }
     console.log("Receiving: " + obj.data);
 }, false);

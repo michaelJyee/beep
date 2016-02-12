@@ -24,7 +24,7 @@ html,body{
 }
 #beat.active{
   background: #0e83cd;
-  box-shadow: -2px 1px 30px #0e83cd, 1px -2px 35px #0e83cd;
+  box-shadow: -1px 1px 30px #0e83cd, 1px -1px 40px #0e83cd;
 }
 input#userInput{
   box-sizing: content-box;
