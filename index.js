@@ -9,6 +9,10 @@ app.get('/', function (req, res) {
   res.render('index', { title: 'Hey', message: 'BEEP, BEEP... ect'});
 });
 
+app.get('/test', function (req, res) {
+  res.render('test', { title: 'TEST', message: 'THIS IS CRAP'});
+});
+
 app.post('/ah', function(request, response){
     console.log(request.body.user.name);
     console.log(request.body.user.email);
