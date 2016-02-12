@@ -62,9 +62,24 @@ var validInput = function(){
     post.validInput = true;
     return true;
   }else{
+    errAnimate();
     post.validInput = false;
     return false;
   }
+}
+
+var errAnimate = function(){
+  $('#startStopButton').jrumble({
+    x: 18,
+    y: 0,
+    speed: 35
+  });
+  
+  $('#startStopButton').trigger('startRumble');
+  wait = setInterval(function(){
+    $('#startStopButton').trigger('stopRumble');
+    clearInterval(wait);
+  }, 700);
 }
 
 $("#my-input").bind("slider:changed", function (event, data) {
