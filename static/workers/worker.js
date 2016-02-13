@@ -1,9 +1,8 @@
 //Michael Yee - Worker
 var data = {
-	beat1:false,
-	beat2:false,
-	beat3:false,
-	beat4:false
+	run:true,
+	sound:true,
+	tracker: 0
 }
 self.addEventListener('message', function(obj) {
 	
@@ -11,20 +10,20 @@ self.addEventListener('message', function(obj) {
 	var mil = bpmToMill(obj.data.bpm);
 
 	if(obj.data.action === "start" && obj.data.validInput){
-		console.log("WORKER: start");
+		data.run = true;
 		myVar = setInterval(myTimer, mil);
 	}else if(obj.data.action === "stop"){
+		data.run = false;
 		self.postMessage(false);
 		clearInterval(myVar);
 	}else if(obj.data.action === "update" && obj.data.validInput){
+		data.run = true;
 		clearInterval(myVar);
 		mil = bpmToMill(obj.data.bpm);
 		myVar = setInterval(myTimer, mil);
-
-		console.log("WORKER: update " + mil);
 	}else if(obj.data.action === "change"){
+		data.run = false;
 		mil = bpmToMill(obj.data.bpm);
-		console.log("WORKER: change " + mil);
 	}
 
   	function myTimer() {
@@ -32,8 +31,9 @@ self.addEventListener('message', function(obj) {
   		if(counter > obj.data.beats){
   			counter = 1;
   		}
-  		console.log("counter: " + counter);
-    	self.postMessage(true);
+  		data.tracker = counter;
+  		console.log(printObj());
+    	self.postMessage(data);
 	}
 
 	function bpmToMill(data){
@@ -42,7 +42,10 @@ self.addEventListener('message', function(obj) {
 		return (min/data) * mil;
 	};
 
+	function printObj(){
+		return ("\nWorker Sending{\n"+"run: " + data.run + "\nsound: " + data.sound + "\ntracker: " + data.tracker + "\n}\n");
+	}
 
-	console.log( "\nvalidInput: " +obj.data.validInput +"\nAction: " + obj.data.action + "\nbpm: " + obj.data.bpm + "\nbeats: " + obj.data.beats);
+	console.log( "\rWorker Receiving{\nvalidInput: " +obj.data.validInput +"\nAction: " + obj.data.action + "\nbpm: " + obj.data.bpm + "\nbeats: " + obj.data.beats+"\n}\n");
 
 }, false);
