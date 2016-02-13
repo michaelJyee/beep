@@ -98,10 +98,14 @@ $("#my-input").bind("slider:changed", function (event, data) {
   beepSound.volume(data.ratio);
 });
 
-
 worker.addEventListener('message', function(obj) {
-    if(obj.data){
-      beepSound.play();
+    if(obj.data.run){
+      if(obj.data.sound){
+        beepSound.play();
+      }
+      $("div#beat").removeClass( "active" );
+      $( ".q"+ obj.data.tracker).addClass( "active" );
+    }else{
+      $("div#beat").removeClass( "active" );
     }
-    console.log("Receiving: " + obj.data);
 }, false);
