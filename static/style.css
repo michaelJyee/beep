@@ -2,6 +2,32 @@ html,body{
   margin: 0;
   padding: 0;  
 }
+
+#volumeContainer{
+  position: relative;
+  height: 50px;
+  width: 35px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#volumeIcon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -12.5px;
+  margin-top: -12.5px;
+  color: #ffffff;
+  font-size:25px;
+}
+#volumeControl{
+  display: inline-block;
+  vertical-align: middle;
+  background-color: green;
+  width: 200px;
+  height: 50px;
+}
 #container1{
   display: block;
   margin-left: auto;
@@ -35,6 +61,7 @@ input#userInput{
   padding: 0px;
   border: 0px;
   font-size: 40px;
+  margin-left: 5px;
   text-align: center;
 }
 input::-webkit-outer-spin-button,
@@ -64,7 +91,6 @@ button#startStopButton{
   color: #fff;
   font-size: 16px;
   font-weight: 200;
-  margin-left: 5px;
 }
 .displayBeeps{
   background-color: #f2f2f2 ;
@@ -77,4 +103,7 @@ button#startStopButton{
 }
 div.control{
   padding-left: 0;
+}
+.sliderClass{
+  position: absolute;
 }

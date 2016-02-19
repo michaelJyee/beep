@@ -31,7 +31,9 @@ var __slice = [].slice,
       }
       this.input.hide();
       this.slider = $("<div>").addClass("slider" + (this.settings.classSuffix || "")).css({
-        position: "relative",
+        position: "absolute",
+        top:"50%",
+        marginTop: "-10px",
         userSelect: "none",
         boxSizing: "border-box"
       }).insertBefore(this.input);
