@@ -6,7 +6,7 @@ html,body{
 #volumeContainer{
   position: relative;
   height: 50px;
-  width: 35px;
+  width: auto;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
@@ -15,19 +15,21 @@ html,body{
 #volumeIcon{
   position: absolute;
   top: 50%;
-  left: 50%;
-  margin-left: -12.5px;
-  margin-top: -12.5px;
+  left: 5px;
+  margin-top: -15px;
   color: #ffffff;
-  font-size:25px;
+  font-size:30px;
+  cursor:pointer;
 }
 #volumeControl{
   display: inline-block;
   vertical-align: middle;
-  background-color: green;
-  width: 200px;
+  width: 120px;
   height: 50px;
+  opacity: 1;
+  margin-left: 40px;
 }
+
 #container1{
   display: block;
   margin-left: auto;
@@ -103,7 +105,4 @@ button#startStopButton{
 }
 div.control{
   padding-left: 0;
-}
-.sliderClass{
-  position: absolute;
 }

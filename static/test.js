@@ -95,6 +95,15 @@ var errAnimate = function(){
 
 $("#my-input").bind("slider:changed", function (event, data) {
   console.log(data.ratio);
+  if(data.ratio > 0){
+    $('#volumeIcon').addClass('glyphicon-volume-up');
+    $('#volumeIcon').removeClass('glyphicon-volume-off');
+    console.log("UP!");
+  }else{
+    $('#volumeIcon').removeClass('glyphicon-volume-up');
+    $('#volumeIcon').addClass('glyphicon-volume-off');
+    console.log("DOWN!");
+  }
   beepSound.volume(data.ratio);
 });
 
@@ -109,3 +118,27 @@ worker.addEventListener('message', function(obj) {
       $("div#beat").removeClass( "active" );
     }
 }, false);
+
+
+$("#volumeContainer").on( {
+   'mouseenter':function() {
+      console.log("enter");
+      $("#volumeControl").removeClass('hide');
+ },
+   'mouseleave':function() {
+      console.log("leave");
+      $("#volumeControl").addClass('hide');
+ }
+});
+
+
+$("#volumeIcon").click(function(){
+  if($('#volumeIcon').hasClass('glyphicon-volume-up')){
+    $('#volumeIcon').addClass('glyphicon-volume-off');
+    $('#my-input').simpleSlider("setValue", 0);
+  }
+  else if($('#volumeIcon').hasClass('glyphicon-volume-off')){
+    $("#volumeControl").removeClass('hide');
+    $('#my-input').simpleSlider("setValue", .75);
+  }
+});
