@@ -7,7 +7,7 @@ app.use(express.static(__dirname + '/static'));
 app.use(bodyParser.json()); // for parsing application/json
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey', message: 'BEEP, BEEP... etc'});
+  res.render('index', { title: 'Beat-Machine.com', message: 'BEEP, BEEP... etc'});
 });
 
 app.get('/test', function (req, res) {
